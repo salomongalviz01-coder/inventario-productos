@@ -1,0 +1,17 @@
+# Python / API
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Variables de entorno
+.env
+
+# Flutter
+inventario_app/build/
+inventario_app/.dart_tool/
+inventario_app/.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
