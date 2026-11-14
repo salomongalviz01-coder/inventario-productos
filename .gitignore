@@ -15,3 +15,8 @@ inventario_app/.idea/
 # Sistema
 .DS_Store
 Thumbs.db
+
+.idea/
+.venv/
+.env
+inventario_api/inventario.db

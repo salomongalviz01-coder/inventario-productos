@@ -7,7 +7,20 @@ class AppShell extends StatelessWidget {
 
   int _indice(BuildContext context) {
     final ruta = GoRouterState.of(context).uri.path;
-    return ruta.startsWith('/productos') ? 1 : 0;
+    if (ruta.startsWith('/sesion')) return 2;
+    if (ruta.startsWith('/productos')) return 1;
+    return 0;
+  }
+
+  void _ir(BuildContext context, int i) {
+    switch (i) {
+      case 1:
+        context.go('/productos');
+      case 2:
+        context.go('/sesion');
+      default:
+        context.go('/');
+    }
   }
 
   @override
@@ -16,7 +29,7 @@ class AppShell extends StatelessWidget {
       body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indice(context),
-        onDestinationSelected: (i) => context.go(i == 0 ? '/' : '/productos'),
+        onDestinationSelected: (i) => _ir(context, i),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),
@@ -27,6 +40,11 @@ class AppShell extends StatelessWidget {
             icon: Icon(Icons.inventory_2_outlined),
             selectedIcon: Icon(Icons.inventory_2),
             label: 'Productos',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Sesión',
           ),
         ],
       ),
