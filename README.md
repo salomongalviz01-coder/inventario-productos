@@ -82,7 +82,7 @@ Tabla de productos:
 
 - `nombre`: obligatorio, de 1 a 100 caracteres.
 - `codigo`: obligatorio, de 1 a 50 caracteres y **único** (si ya existe otro producto con ese código, la API responde 422).
-- `descripcion`: opcional, hasta 255 caracteres.
+- `descripcion`: opcional, hasta 255 
 - `precio`: obligatorio y mayor que 0.
 - `cantidad`: obligatoria, entera y mayor o igual a 0.
 - `categoria`: obligatoria, de 1 a 50 caracteres.
@@ -291,4 +291,10 @@ La API se ejecuta de forma local. No se realizó despliegue público.
 
 ## Seguridad
 
-El repositorio no contiene contraseñas, credenciales ni secretos. El archivo `.env` está excluido mediante `.gitignore`.
+El repositorio no contiene contraseñas, credenciales ni secretos. El archivo `.env` está excluido mediante `.gitignore`. ## Autenticación JWT
+
+- El backend (`inventario_api`) genera un JWT en el login y protege los endpoints con `Authorization: Bearer <token>`. Sin token válido responde `401`.
+- Configura `inventario_api/.env` con `SECRET_KEY` (no se sube al repo).
+- Ejecutar: backend con `[COMPLETAR: comando de arranque]` y app con `flutter run -d chrome --web-port 5000`.
+- Probar: login correcto e incorrecto, CRUD con sesión, petición sin token (401), persistencia al reabrir la app y cierre de sesión.
+- El token se guarda con `flutter_secure_storage` y los datos del usuario con `shared_preferences`.
